@@ -149,7 +149,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 167 个字)
+                    2 分钟 读完 (大约 251 个字)
                 </span>
                 
                 
@@ -188,7 +188,20 @@
 <h3 id="4-4-部署到远端（使用git）"><a href="#4-4-部署到远端（使用git）" class="headerlink" title="4.4 部署到远端（使用git）"></a>4.4 部署到远端（使用git）</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="5-部署到github"><a href="#5-部署到github" class="headerlink" title="5. 部署到github"></a>5. 部署到github</h2><p>待编辑</p>
+<h2 id="5-部署到github"><a href="#5-部署到github" class="headerlink" title="5. 部署到github"></a>5. 部署到<a href="github.com">github</a></h2><h3 id="5-1-安装git-bash"><a href="#5-1-安装git-bash" class="headerlink" title="5.1 安装git bash"></a>5.1 安装git bash</h3><p><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git bash 下载链接</a></p>
+<p>配置 git 账户、邮箱</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourName&quot;</span><br><span class="line"></span><br><span class="line">git config --global user.email &quot;yourEmail&quot;</span><br></pre></td></tr></table></figure>
+
+<p>查看设置</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-创建新的仓库"><a href="#5-2-创建新的仓库" class="headerlink" title="5.2 创建新的仓库"></a>5.2 创建新的仓库</h3><p>Repository name : ‘Owner’.github.io</p>
+<h3 id="5-3-安装hexo-deployer-git"><a href="#5-3-安装hexo-deployer-git" class="headerlink" title="5.3 安装hexo-deployer-git"></a>5.3 安装hexo-deployer-git</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-设置-config-yml"><a href="#5-4-设置-config-yml" class="headerlink" title="5.4 设置_config.yml"></a>5.4 设置_config.yml</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 仓库地址</span><br><span class="line">  brach: master</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-部署到远端"><a href="#5-5-部署到远端" class="headerlink" title="5.5 部署到远端"></a>5.5 部署到远端</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.bilibili.com/video/av44544186" target="_blank" rel="noopener">手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo|codesheep</a></p>
 
         </div>
@@ -255,7 +268,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        0
+                        1
                     </p>
                 </div>
             </div>
@@ -338,7 +351,15 @@
                 分类
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/oracle/">
+            <span class="level-start">
+                <span class="level-item">oracle</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -394,7 +415,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-01T07:52:11.000Z">2019-10-01</time></div>
                     <a href="/2019/10/01/oracle-practice-10-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">oracle练习_1</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/oracle/">oracle</a>
                     </p>
                 </div>
             </div>
@@ -503,7 +524,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-01T07:52:11.000Z">2019-10-01</time></div>
                     <a href="/2019/10/01/oracle-practice-10-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">oracle练习_1</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/oracle/">oracle</a>
                     </p>
                 </div>
             </div>
