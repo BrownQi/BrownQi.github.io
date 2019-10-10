@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>3-Oracle - BrownQi&#39;s Notes</title>
+
+
+    <meta name="description" content="3-oracle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3-Oracle">
+<meta property="og:url" content="http://yoursite.com/2019/10/11/3-Oralce/index.html">
+<meta property="og:site_name" content="BrownQi&#39;s Notes">
+<meta property="og:description" content="3-oracle">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-10-10T20:23:04.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3-Oracle">
+<meta name="twitter:description" content="3-oracle">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/BrownQi.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/title.png" alt="3-Oracle" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-10T20:22:20.000Z">2019-10-11</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    38 分钟 读完 (大约 5666 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                3-Oracle
+            
+        </h1>
+        <div class="content">
+            <p>3-oracle</p>
+<a id="more"></a>
+<p>[TOC]</p>
+<h1 id="1-多表查询"><a href="#1-多表查询" class="headerlink" title="1.多表查询"></a>1.多表查询</h1><h2 id="1-1-连接查询"><a href="#1-1-连接查询" class="headerlink" title="1.1 连接查询"></a>1.1 连接查询</h2><ol>
+<li>笛卡尔集(Cross Join)</li>
+<li>等值连接(Equijoin)(Natural join..on)</li>
+<li>非等值连接(Non-Equijoin)</li>
+<li>自连接(Self join)</li>
+<li>左外联接（Left Outer Join ）</li>
+<li>右外联接（Right Outer Join）</li>
+<li>满外联接（Full Outer Join）</li>
+<li>内连接 （inner join）</li>
+</ol>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">--(笛卡尔集)员工表emp和部门表dept的笛卡尔集（笛卡尔集表=列数之和，行数之积，笛卡尔集表内中有些数据是不符合要求的）</span></span><br><span class="line"><span class="hljs-comment">--多表查询没有连接条件，或者连接条件无效</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用等值连接/内连接（只能使用=号），显示员工的编号，姓名，部门名，使用表别名简化</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用非等值连接（不能使用=号，其它符号可以，例如：&gt;=，&lt;=，&lt;&gt;，betwen and等），显示员工的编号，姓名，月薪，工资级别</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--内连接查询：只能查询出符合条件的记录</span></span><br><span class="line"><span class="hljs-comment">--外连接查询：既能查询出符合条件的记录（内连接查询到的），还返回左（或右）表中不满足条件的行</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">使用外连接，按部门10,20,30,40号，统计各部门员工人数，要求显示部门号，部门名，人数</span></span><br><span class="line"><span class="hljs-comment">部门号 部门名        人数</span></span><br><span class="line"><span class="hljs-comment">10     ACCOUNTING    3 </span></span><br><span class="line"><span class="hljs-comment">20     RESEARCH      5</span></span><br><span class="line"><span class="hljs-comment">30     SALES         6</span></span><br><span class="line"><span class="hljs-comment">40     OPERATIONS    0</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">等值连接/非等值连接/内连接：只会查询出多张表中，根据某个字段匹配，符合条件的记录，不符合条件的记录是不会存在的</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-comment">--左外连接[是oracle专用的，不是SQL99规则]，或者使用通用的left [outer] join</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--右外连接：，或者使用通用的right [outer] join</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用左外连接，按部门10,20,30,40号，统计各部门员工人数，要求显示部门号，部门名，人数，且按人数降序排列</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用自连接，显示"SMITH的上级是FORD"这种格式</span></span><br><span class="line"></span><br><span class="line">只有13条记录，不含有KING</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--基于上述问题，将KING的上级是“”显示出来</span></span><br><span class="line"></span><br><span class="line">14条记录</span><br><span class="line">注意：自连接也用到内连接和外连接</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-集合操作"><a href="#1-2-集合操作" class="headerlink" title="1.2 集合操作"></a>1.2 集合操作</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">	联合查询是对多个查询结果集进行处理，有如下四个处理方式：</span></span><br><span class="line"><span class="hljs-comment">	1.union：取并集，但是有重复记录会去重【去重】</span></span><br><span class="line"><span class="hljs-comment">	2.union all：取并集，有重复记录不会去重【不去重】</span></span><br><span class="line"><span class="hljs-comment">	3.INTERSECT:取交集，即两个查询结果中共有的记录</span></span><br><span class="line"><span class="hljs-comment">	4.MINUS:取差集，返回第一个查询检索出的记录减去第二个查询检索出的记录之后剩余的记录</span></span><br><span class="line"><span class="hljs-comment">	</span></span><br><span class="line"><span class="hljs-comment">	面试：union和union all的区别</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-comment">--使用并集运算，查询20号部门或30号部门的员工信息 ：取并集</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用交集运算[intersect]，查询工资在1000-2000和1500-2500之间的员工信息（方式一）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--用where行过滤，查询工资在1000-2000和1500-2500之间的员工信息（方式二）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用差集运算[minus]，查询工资在1000-2000，但不在1500-2500之间的员工信息（方式一）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用where行过滤，查询工资在1000-2000，但不在1500-2500之间的员工信息（方式二）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--集合查询的细节：</span></span><br><span class="line"><span class="hljs-comment">--使用集合查询的列的个数要一致</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.ename,e.deptno,e.sal <span class="hljs-keyword">from</span> emp e</span><br><span class="line"><span class="hljs-keyword">union</span> </span><br><span class="line"><span class="hljs-keyword">select</span> e.ename,e.deptno <span class="hljs-keyword">from</span> emp e;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用集合查询的列的数据类型要一样</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.ename,e.deptno,e.sal <span class="hljs-keyword">from</span> emp e</span><br><span class="line"><span class="hljs-keyword">union</span> </span><br><span class="line"><span class="hljs-keyword">select</span> e.hiredate,e.deptno,e.sal <span class="hljs-keyword">from</span> emp e;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--小结：在可以实现同一个功能的时候，我们一般这么选择：多表查询 &gt; 子查询 &gt; 集合查询</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-子查询"><a href="#2-子查询" class="headerlink" title="2.子查询"></a>2.子查询</h1><p>##2.1 单行/多行子查询</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">	子查询的作用：查询条件未知的事物</span></span><br><span class="line"><span class="hljs-comment">    查询条件已知的问题：例如：查询工资为800的员工信息</span></span><br><span class="line"><span class="hljs-comment">    查询条件未知的问题：例如：查询工资为20号部门平均工资的员工信息</span></span><br><span class="line"><span class="hljs-comment">    一个条件未知的问题，可以分解为多个条件已知的问题</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-comment">--查询工资比WARD高的员工信息</span></span><br><span class="line"><span class="hljs-comment">--方法1：分两步查</span></span><br><span class="line"><span class="hljs-comment">--第一：查询WARD的工资?</span></span><br><span class="line">      </span><br><span class="line"><span class="hljs-comment">--第二：查询工资比1250高的员工信息？</span></span><br><span class="line">	 </span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--方法2：子查询</span></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--方法3：自连接查询</span></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询部门名为'SALES'的员工信息</span></span><br><span class="line"><span class="hljs-comment">--方式1：子查询</span></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">子查询细节：</span></span><br><span class="line"><span class="hljs-comment">1）子查询与父查询可以针对同一张表 </span></span><br><span class="line"><span class="hljs-comment">2）子查询与父查询可以针对不同张表</span></span><br><span class="line"><span class="hljs-comment">3) 子查询与父查询在传递参数时，数量要相同</span></span><br><span class="line"><span class="hljs-comment">4) 子查询与父查询在传递参数时，类型要相同</span></span><br><span class="line"><span class="hljs-comment">5) 子查询与父查询在传递参数时，含义要相同</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--方式2：多表查询</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询每个员工编号,姓名，部门名,工资等级（三表查询，这三张表并无外健关联）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询工资最低的员工信息（单行子查询，使用=号）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询部门名为'ACCOUNTING'或'SALES'的员工信息（多行子查询，使用in关键字）	</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询工资比20号部门【任意any】一个员工工资【低&lt;】的员工信息（多行子查询，使用any关键字） </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询工资比30号部门【所有all】员工【低&lt;】的员工信息（多行子查询，使用all关键字） </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--返回job与7499号员工相同，sal比7654号员工多的员工姓名，job 和工资</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询平均工资最低的部门信息</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询平均工资最低的部门信息和该部门的平均工资</span></span><br><span class="line"><span class="hljs-keyword">select</span> d.*, (<span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(sal) <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno = d.deptno)</span><br><span class="line"><span class="hljs-keyword">from</span> dept d</span><br><span class="line"><span class="hljs-keyword">where</span> d.deptno = (<span class="hljs-comment">--部门平均工资最低值对应的no</span></span><br><span class="line">                        <span class="hljs-keyword">SELECT</span> deptno</span><br><span class="line">                        <span class="hljs-keyword">FROM</span> emp</span><br><span class="line">                        <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> deptno </span><br><span class="line">                        <span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">avg</span>(sal) = (<span class="hljs-comment">--部门平均工资最低值</span></span><br><span class="line">                                             <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">min</span>(<span class="hljs-keyword">avg</span>(sal))</span><br><span class="line">                                             <span class="hljs-keyword">FROM</span> emp</span><br><span class="line">                                             <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> deptno</span><br><span class="line">                                             ) </span><br><span class="line">                        );</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询平均工资高于公司平均工资的部门有哪些?</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--查询 1981 年来公司的所有员工的最高工资的那个员工的信息.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-子查询注意事项"><a href="#2-2-子查询注意事项" class="headerlink" title="2.2 子查询注意事项"></a>2.2 子查询注意事项</h2><p>如果子查询未返回任何行，则主查询也不会返回任何结果</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select * from emp where sal &gt; (select sal from emp where empno = 8888);</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br></pre></td></tr></table></figure>
+
+<p>如果子查询返回单行结果，则为单行子查询，可以在主查询中对其使用相应的单行记录比较运算符</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select * from emp where sal &gt; (select sal from emp where empno = 7566);</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br><span class="line"> 7788 SCOTT      ANALYST    7566 1987/4/19     3000.00               20</span><br><span class="line"> 7839 KING       PRESIDENT       1981/11/17    5000.00               10</span><br><span class="line"> 7902 FORD       ANALYST    7566 1981/12/3     3000.00               20</span><br></pre></td></tr></table></figure>
+
+<p>如果子查询返回多行结果，则为多行子查询，此时不允许对其使用单行记录比较运算符</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select * from emp where sal &gt; (select avg(sal) from emp group by deptno);</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> sal &gt; (<span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(sal) <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno)</span><br><span class="line"> </span><br><span class="line">ORA<span class="hljs-number">-01427</span>: 单行子查询返回多个行</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-exists-vs-in"><a href="#2-3-exists-vs-in" class="headerlink" title="2.3 exists vs in"></a>2.3 exists vs in</h2><p>​    <strong>对于 in 和 exists 的性能区别:</strong></p>
+<p>​    如果子查询得出的结果集记录较少，主查询中的表较大且又有索引时应该用 in,反之如果外层的主查询记录较少，子查询中的表大，又有索引时使用 exists。其实我们区分 in 和 exists 主要是造成了驱动顺序的改变（这是性能变化的关键），如果是 exists，那么以外层表为驱动表，先被访问，如果是 IN，那么先执行子查询，所以我们会以驱动表的快速返回为目标，那么就会考虑到索引及结果集的关系了另外 IN 是不对 NULL 进行处理 .</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select * from emp where null in (1,null);</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br><span class="line"> </span><br><span class="line">SQL&gt; select * from emp where 1 in (1,null);</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br><span class="line"> 7369 SMITH      CLERK      7902 1980/12/17     800.00               20</span><br><span class="line"> 7499 ALLEN      SALESMAN   7698 1981/2/20     1600.00    300.00     30</span><br><span class="line"> 7521 WARD       SALESMAN   7698 1981/2/22     1250.00    500.00     30</span><br><span class="line"> 7566 JONES      MANAGER    7839 1981/4/2      2975.00               20</span><br><span class="line"> 7654 MARTIN     SALESMAN   7698 1981/9/28     1250.00   1400.00     30</span><br><span class="line"> 7698 BLAKE      MANAGER    7839 1981/5/1      2850.00               30</span><br><span class="line"> 7782 CLARK      MANAGER    7839 1981/6/9      2450.00               10</span><br><span class="line"> 7788 SCOTT      ANALYST    7566 1987/4/19     3000.00               20</span><br><span class="line"> 7839 KING       PRESIDENT       1981/11/17    5000.00               10</span><br><span class="line"> 7844 TURNER     SALESMAN   7698 1981/9/8      1500.00      0.00     30</span><br><span class="line"> 7876 ADAMS      CLERK      7788 1987/5/23     1100.00               20</span><br><span class="line"> 7900 JAMES      CLERK      7698 1981/12/3      950.00               30</span><br><span class="line"> 7902 FORD       ANALYST    7566 1981/12/3     3000.00               20</span><br><span class="line"> 7934 MILLER     CLERK      7782 1982/1/23     1300.00               10</span><br><span class="line"> </span><br><span class="line">14 rows selected</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select * from emp a where exists (select sal from emp e where a.sal &gt; 2500) order by a.ename;</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br><span class="line"> 7698 BLAKE      MANAGER    7839 1981/5/1      2850.00               30</span><br><span class="line"> 7902 FORD       ANALYST    7566 1981/12/3     3000.00               20</span><br><span class="line"> 7566 JONES      MANAGER    7839 1981/4/2      2975.00               20</span><br><span class="line"> 7839 KING       PRESIDENT       1981/11/17    5000.00               10</span><br><span class="line"> 7788 SCOTT      ANALYST    7566 1987/4/19     3000.00               20</span><br><span class="line"> </span><br><span class="line">SQL&gt; select * from emp where sal in (select sal from emp where sal &gt; 2500) order by ename;</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br><span class="line"> 7698 BLAKE      MANAGER    7839 1981/5/1      2850.00               30</span><br><span class="line"> 7902 FORD       ANALYST    7566 1981/12/3     3000.00               20</span><br><span class="line"> 7566 JONES      MANAGER    7839 1981/4/2      2975.00               20</span><br><span class="line"> 7839 KING       PRESIDENT       1981/11/17    5000.00               10</span><br><span class="line"> 7788 SCOTT      ANALYST    7566 1987/4/19     3000.00               20</span><br></pre></td></tr></table></figure>
+
+<p>第二个例子：</p>
+<figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select * from emp e where exists (select mgr from emp b where e.mgr is null);</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br><span class="line"> 7839 KING       PRESIDENT       1981/11/17    5000.00               10</span><br><span class="line"> </span><br><span class="line">SQL&gt; select * from emp e where e.mgr in (null);</span><br><span class="line"> </span><br><span class="line">EMPNO ENAME      JOB         MGR HIREDATE          SAL      COMM DEPTNO</span><br><span class="line"><span class="hljs-comment">----- ---------- --------- ----- ----------- --------- --------- ------</span></span><br><span class="line"> </span><br><span class="line">SQL&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    EXISTS的执行流程</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> t1 <span class="hljs-keyword">where</span> <span class="hljs-keyword">exists</span> ( <span class="hljs-keyword">select</span> <span class="hljs-literal">null</span> <span class="hljs-keyword">from</span> t2 <span class="hljs-keyword">where</span> y = x )</span><br><span class="line"><span class="hljs-comment">-- 可以理解为:</span></span><br><span class="line"><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> ( <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> t1 )</span><br><span class="line">	<span class="hljs-keyword">loop</span></span><br><span class="line">		<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">exists</span> ( <span class="hljs-keyword">select</span> <span class="hljs-literal">null</span> <span class="hljs-keyword">from</span> t2 <span class="hljs-keyword">where</span> y = x.x )</span><br><span class="line">		<span class="hljs-keyword">then</span></span><br><span class="line">		<span class="hljs-keyword">OUTPUT</span> THE <span class="hljs-built_in">RECORD</span></span><br><span class="line">		<span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span></span><br><span class="line">	<span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span></span><br></pre></td></tr></table></figure>
+
+<p>#3.TopN 查询【分析函数】 </p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">	分析函数根据一组行来计算聚合值</span></span><br><span class="line"><span class="hljs-comment">	用于计算完成聚集的累计排名等</span></span><br><span class="line"><span class="hljs-comment">	分析函数为每组记录返回多个行</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">	以下三个分析函数用于计算一个行在一组有序行中的排位，序号从1开始</span></span><br><span class="line"><span class="hljs-comment">	ROW_NUMBER 返回连续的排位，不论值是否相等，直接往后数</span></span><br><span class="line"><span class="hljs-comment">	RANK 具有相等值的行排位相同，序数随后跳跃，比如：有两个第一名时，第三个的排名是3</span></span><br><span class="line"><span class="hljs-comment">	DENSE_RANK 具有相等值的行排位相同，序号是连续的，比如：有两个第一名时，第三个的排名是2</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-comment">--找出公司所有人工资排名</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--求每个部门工资前3名的人姓名、部门、工作和工资</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--给emp表中每种工作工资由高到低进行排序：</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--总结：</span></span><br><span class="line"><span class="hljs-comment">--①Over函数指明在那些字段上做分析，其内跟Partition by表示对数据进行分组。注意Partition by可以有多个字段。</span></span><br><span class="line"><span class="hljs-comment">--over函数是oracle特有的一个特殊函数</span></span><br><span class="line"><span class="hljs-comment">--②Over函数可以和其它聚集函数、分析函数搭配，起到不同的作用。例如这里的SUM，还有诸如Rank，Dense_rank等。</span></span><br></pre></td></tr></table></figure>
+
+<p>#4.分页查询[重点] </p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">什么是Oracle伪列？Oracle 中伪列就像一个表列，但是它并没有存储在表中，即我们在设计表的时候，并没有定义这个字段，但是可以直接拿来用。</span></span><br><span class="line"><span class="hljs-comment">伪列可以从表中查询，但不能插入、更新和删除它们的值</span></span><br><span class="line"><span class="hljs-comment">常用的伪列：</span></span><br><span class="line"><span class="hljs-comment">ROWID：它是表中行的存储地址，该地址可以唯一地标识数据库中的一行，可以使用 ROWID 伪列快速地定位表中的一行</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">  什么是rownum，有何特点</span></span><br><span class="line"><span class="hljs-comment">  1）rownum是oracle专用的关健字</span></span><br><span class="line"><span class="hljs-comment">  2）rownum与表在一起，表亡它亡,表在它在 </span></span><br><span class="line"><span class="hljs-comment">  3）rownum在默认情况下，从表中是看不出来的</span></span><br><span class="line"><span class="hljs-comment">  4）只有在select子句中，明确写出rownum才能显示出来</span></span><br><span class="line"><span class="hljs-comment">  5）rownum是number类型，且唯一连续</span></span><br><span class="line"><span class="hljs-comment">  6）rownum最小值是1，最大值与你的记录条数相同</span></span><br><span class="line"><span class="hljs-comment">  7）基于rownum的特性，我们通常rownum只用于&lt;或&lt;=关系运算   8）在Oracle中，分页就是使用rownum，同时结合子查询</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-comment">--显示emp表中3-8条记录（方式一：使用集合减运算）</span></span><br><span class="line"><span class="hljs-keyword">select</span> empno,ename,<span class="hljs-keyword">rownum</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span>&lt;=<span class="hljs-number">8</span></span><br><span class="line"><span class="hljs-keyword">minus</span></span><br><span class="line"><span class="hljs-keyword">select</span> empno,ename,<span class="hljs-keyword">rownum</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span>&lt;=<span class="hljs-number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--显示emp表中3-8条记录（方式二：使用子查询，在from子句中使用，重点）</span></span><br><span class="line"><span class="hljs-comment">-- rownum是跟随表/或查询结果的存在而存在，rownum只能单独使用，不能使用表名/别名.rownum</span></span><br><span class="line"><span class="hljs-comment">-- 所以，在子查询中使用rownum的时候，通常为rownum设置一个别名</span></span><br><span class="line"><span class="hljs-comment">-- 同时，为子查询设置一个别名</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.empno,t.ename,t.rn</span><br><span class="line"><span class="hljs-keyword">from</span>(</span><br><span class="line"><span class="hljs-keyword">select</span> empno,ename,<span class="hljs-keyword">rownum</span> rn <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span>&lt;=<span class="hljs-number">8</span>) t</span><br><span class="line"><span class="hljs-keyword">where</span> t.rn&gt; <span class="hljs-number">2</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--oracle中，分页的常用格式即下面的写法</span></span><br><span class="line"><span class="hljs-comment">-- 需求1：1页显示4条数据,查询第1页数据【测试第一页，只针对第一页有效，不通用，不对的】</span></span><br><span class="line"><span class="hljs-keyword">select</span> empno,ename,<span class="hljs-keyword">rownum</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">4</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 需求2：1页显示4条数据,查询第2页数据</span></span><br><span class="line"><span class="hljs-comment">-- 公式：①子查询中rownum &lt;= 当前页*每页的条数</span></span><br><span class="line"><span class="hljs-comment">--       ②在外层查询中，t.rn &gt; (当前页-1)*每页的条数 </span></span><br><span class="line"><span class="hljs-comment">-- Oracle的分页需要注意的几点</span></span><br><span class="line"><span class="hljs-comment">-- 1.使用rownum实现</span></span><br><span class="line"><span class="hljs-comment">-- 2.使用子查询</span></span><br><span class="line"><span class="hljs-comment">-- 3.分页中两个未知参数的计算公式</span></span><br><span class="line"><span class="hljs-comment">-- 4.若想去表的所有字段，又想使用*，使用表名.*;where的rownum不能使用别名替代</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.empno,t.ename,t.rn  <span class="hljs-comment">-- select t.*</span></span><br><span class="line"><span class="hljs-keyword">from</span>(</span><br><span class="line"><span class="hljs-keyword">select</span> empno,ename,<span class="hljs-keyword">rownum</span> rn <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">12</span>) t</span><br><span class="line"><span class="hljs-keyword">where</span> t.rn &gt; <span class="hljs-number">8</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--显示emp表中5-9条记录</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--显示emp表中薪水最高的前5人</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*<span class="hljs-comment">--,rownum</span></span><br><span class="line"><span class="hljs-keyword">from</span>(</span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>) t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span>&lt;=<span class="hljs-number">5</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--使用分析函数 -- row_number()</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*</span><br><span class="line"><span class="hljs-keyword">from</span>(</span><br><span class="line"><span class="hljs-keyword">select</span> emp.*,row_number() <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>) <span class="hljs-keyword">rank</span> <span class="hljs-keyword">from</span> emp) t</span><br><span class="line"><span class="hljs-keyword">where</span> t.rank&lt;=<span class="hljs-number">5</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--emp表中薪水排名第5的员工信息</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*</span><br><span class="line"><span class="hljs-keyword">from</span>(</span><br><span class="line"><span class="hljs-keyword">select</span> emp.*,row_number() <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>) <span class="hljs-keyword">rank</span> <span class="hljs-keyword">from</span> emp) t</span><br><span class="line"><span class="hljs-keyword">where</span> t.rank=<span class="hljs-number">5</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">select</span> e.*</span><br><span class="line"><span class="hljs-keyword">from</span> (  <span class="hljs-comment">--对排序后的结果，使用rownum取前5条</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span> rn</span><br><span class="line"><span class="hljs-keyword">from</span>( <span class="hljs-comment">-- 对所有数据做全局排序</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>) t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span>&lt;=<span class="hljs-number">5</span>) e</span><br><span class="line"><span class="hljs-keyword">where</span> e.rn=<span class="hljs-number">5</span> </span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--按照排序的分页通常这么写【按照sal排序，每页3条数据，取第2页】</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.*  <span class="hljs-comment">--3.取指定页数的数据 即 rn &gt; (当前页-1)*每页条数</span></span><br><span class="line"><span class="hljs-keyword">from</span> (</span><br><span class="line"><span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span> rn  <span class="hljs-comment">--2.取前n页的数据 rownum &lt;= 当前页*每页条数</span></span><br><span class="line"><span class="hljs-keyword">from</span>( <span class="hljs-comment">-- 1.对整体数据进行排序</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span> ) t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">6</span> ) e</span><br><span class="line"><span class="hljs-keyword">where</span> e.rn &gt; <span class="hljs-number">3</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 补充需求：按照工资降序，同时查询条件 sal &gt; 1000,若有其他条件，依次类推</span></span><br><span class="line"><span class="hljs-comment">--1.带查询条件，但不带分页的查询</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> sal &gt; <span class="hljs-number">1000</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>;  <span class="hljs-comment">-- t</span></span><br><span class="line"><span class="hljs-comment">--2.取前n页的数据 rownum &lt;= 当前页*每页条数</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span> rn</span><br><span class="line"><span class="hljs-keyword">from</span> t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;= <span class="hljs-number">6</span>             <span class="hljs-comment">-- e</span></span><br><span class="line"><span class="hljs-comment">--3.从e中查询指定页数的数据</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.*</span><br><span class="line"><span class="hljs-keyword">from</span> e</span><br><span class="line"><span class="hljs-keyword">where</span> e.rn &gt; <span class="hljs-number">3</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--拼接</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.*</span><br><span class="line"><span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span> rn</span><br><span class="line"><span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> sal &gt; <span class="hljs-number">1000</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>)t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;= <span class="hljs-number">6</span>) e</span><br><span class="line"><span class="hljs-keyword">where</span> e.rn &gt; <span class="hljs-number">3</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--思考：如何求总记录数 totalCounts  </span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(t.empno) <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> sal &gt; <span class="hljs-number">1000</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>) t</span><br><span class="line"><span class="hljs-comment">-- 如何求总页数? 每页数据pageSize=5  totalCounts 对 pageSize 取余数</span></span><br><span class="line"><span class="hljs-comment">--若余数=0，总页数=totalCounts / pageSize</span></span><br><span class="line"><span class="hljs-comment">-- 若余数!=0,总页数=totalCounts / pageSize + 1</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5-练习"><a href="#5-练习" class="headerlink" title="5. 练习"></a>5. 练习</h1><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 列出员工表中每个部门的员工数，和部门 no</span></span><br><span class="line"><span class="hljs-comment">-- 列出员工表中每个部门的员工数（员工数必须大于 3），和部门名称</span></span><br><span class="line"><span class="hljs-keyword">select</span> d.deptno,d.dname,<span class="hljs-keyword">count</span>(e.deptno)</span><br><span class="line"><span class="hljs-keyword">from</span> emp e <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> dept d</span><br><span class="line"><span class="hljs-keyword">on</span> e.deptno = d.deptno</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> d.deptno,d.dname</span><br><span class="line"><span class="hljs-keyword">having</span> <span class="hljs-keyword">count</span>(e.deptno) &gt;= <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">count</span>(e.deptno) <span class="hljs-keyword">desc</span>;</span><br><span class="line"><span class="hljs-comment">-- 找出工资比 jones 多的员工</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">where</span> sal &gt; (<span class="hljs-keyword">select</span> sal <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> ename=<span class="hljs-string">'JONES'</span>);</span><br><span class="line"><span class="hljs-comment">-- 列出所有员工的姓名和其上级的姓名</span></span><br><span class="line"><span class="hljs-keyword">select</span> e1.ename,e2.ename 上级姓名</span><br><span class="line"><span class="hljs-keyword">from</span> emp e1 <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> emp e2 <span class="hljs-comment">--使用左外连接，目的是没有上级的也要显示</span></span><br><span class="line"><span class="hljs-keyword">on</span> e1.mgr = e2.empno</span><br><span class="line"><span class="hljs-comment">-- 以职位分组，找出平均工资最高的两种职位</span></span><br><span class="line"><span class="hljs-comment">-- 1.求出按照职位分组的所有平均工资，且按照降序排列</span></span><br><span class="line"><span class="hljs-keyword">select</span> job,<span class="hljs-keyword">avg</span>(sal)</span><br><span class="line"><span class="hljs-keyword">from</span> emp </span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> job</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">avg</span>(sal) <span class="hljs-keyword">desc</span></span><br><span class="line"><span class="hljs-comment">-- 2.从1的查询结果中，取出前2条即可</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*<span class="hljs-comment">--,rownum</span></span><br><span class="line"><span class="hljs-keyword">from</span>(<span class="hljs-keyword">select</span> job,<span class="hljs-keyword">avg</span>(sal)</span><br><span class="line"><span class="hljs-keyword">from</span> emp </span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> job</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">avg</span>(sal) <span class="hljs-keyword">desc</span>) t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span>&lt;=<span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-comment">-- 查找出不在部门 20，且比部门 20 中任何一个人工资都高的员工姓名、部门名称</span></span><br><span class="line"><span class="hljs-comment">-- 1.找出20号部门的sal列表  --也可以使用max</span></span><br><span class="line"><span class="hljs-keyword">select</span> sal <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno=<span class="hljs-number">20</span>; <span class="hljs-comment">--1000,3000,5000</span></span><br><span class="line"><span class="hljs-comment">-- 2.找出工资大于1中的每个值</span></span><br><span class="line"><span class="hljs-comment">--方法1：</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.ename,d.deptno,d.dname,e.sal</span><br><span class="line"><span class="hljs-keyword">from</span> </span><br><span class="line">emp e <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> dept d </span><br><span class="line"><span class="hljs-keyword">on</span> e.deptno = d.deptno</span><br><span class="line"><span class="hljs-keyword">where</span> sal &gt; <span class="hljs-keyword">all</span>(<span class="hljs-keyword">select</span> sal <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno=<span class="hljs-number">20</span>)</span><br><span class="line"><span class="hljs-keyword">and</span> e.deptno != <span class="hljs-number">20</span> <span class="hljs-keyword">or</span> e.deptno <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span></span><br><span class="line"><span class="hljs-comment">--方法2：</span></span><br><span class="line"><span class="hljs-keyword">select</span> dept.deptno,dept.dname,t.sal</span><br><span class="line"><span class="hljs-keyword">from</span> dept </span><br><span class="line"><span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> (</span><br><span class="line"><span class="hljs-keyword">select</span> ename,deptno,sal</span><br><span class="line"><span class="hljs-keyword">from</span> </span><br><span class="line">emp <span class="hljs-keyword">where</span> sal &gt; <span class="hljs-keyword">all</span>(<span class="hljs-keyword">select</span> sal <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno=<span class="hljs-number">20</span>)</span><br><span class="line"><span class="hljs-keyword">and</span> deptno != <span class="hljs-number">20</span> <span class="hljs-keyword">or</span> deptno <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>) t</span><br><span class="line"><span class="hljs-keyword">on</span> dept.deptno = t.deptno</span><br><span class="line"><span class="hljs-comment">-- 得到平均工资大于 2000 的工作职种</span></span><br><span class="line"><span class="hljs-comment">-- 分部门得到工资大于 2000 的所有员工的平均工资，并且平均工资还要大于 2500</span></span><br><span class="line"><span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">avg</span>(sal)  <span class="hljs-comment">--2.在1的过滤结果上，分部门计算平均工资</span></span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">where</span> sal &gt; <span class="hljs-number">2000</span>  <span class="hljs-comment">--1.过滤出工资大于2000的员工</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line"><span class="hljs-keyword">having</span> <span class="hljs-keyword">avg</span>(sal) &gt; <span class="hljs-number">2500</span>;  <span class="hljs-comment">--3. 对分组后的数据进行过滤</span></span><br><span class="line"><span class="hljs-comment">-- 得到每个月工资总数最少的那个部门的部门编号，部门名称，部门位置</span></span><br><span class="line"><span class="hljs-comment">-- 方式1：</span></span><br><span class="line"><span class="hljs-comment">-- 1.对不同部门进行工资的汇总</span></span><br><span class="line"><span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno;</span><br><span class="line"><span class="hljs-comment">-- 2.找出1中的最小工资及其deptno </span></span><br><span class="line"><span class="hljs-comment">--可以使用min，也可以使用rownum[在1中需要排序]</span></span><br><span class="line"><span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line"><span class="hljs-keyword">having</span> <span class="hljs-keyword">sum</span>(sal) = (</span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">min</span>(t.minsal)</span><br><span class="line"><span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno) t)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 3.使用2的结果去关联dept表，查询出需要的字段即可</span></span><br><span class="line"><span class="hljs-keyword">select</span> d.deptno,d.dname,e.minsal</span><br><span class="line"><span class="hljs-keyword">from</span> dept d <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> (</span><br><span class="line">  <span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line">  <span class="hljs-keyword">from</span> emp</span><br><span class="line">  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line">  <span class="hljs-keyword">having</span> <span class="hljs-keyword">sum</span>(sal) = (</span><br><span class="line">  <span class="hljs-keyword">select</span> <span class="hljs-keyword">min</span>(t.minsal)</span><br><span class="line">  <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line">  <span class="hljs-keyword">from</span> emp</span><br><span class="line">  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno) t)</span><br><span class="line">) e</span><br><span class="line"><span class="hljs-keyword">on</span> d.deptno = e.deptno</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--方式2：</span></span><br><span class="line"><span class="hljs-comment">-- 1.对不同部门进行工资的汇总</span></span><br><span class="line"><span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> minsal;</span><br><span class="line"><span class="hljs-comment">-- 2.找出1中的最小工资及其deptno </span></span><br><span class="line"><span class="hljs-comment">--可以使用min，也可以使用rownum[在1中需要排序]</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*</span><br><span class="line"><span class="hljs-keyword">from</span> (</span><br><span class="line">  <span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line">  <span class="hljs-keyword">from</span> emp</span><br><span class="line">  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line">  <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> minsal</span><br><span class="line">) t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 3.使用2的结果去关联dept表，查询出需要的字段即可</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.*,d.dname,d.loc</span><br><span class="line"><span class="hljs-keyword">from</span> dept d <span class="hljs-keyword">join</span> (</span><br><span class="line">  <span class="hljs-keyword">select</span> t.*</span><br><span class="line">  <span class="hljs-keyword">from</span> (</span><br><span class="line">    <span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) minsal</span><br><span class="line">    <span class="hljs-keyword">from</span> emp</span><br><span class="line">    <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line">    <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> minsal</span><br><span class="line">  ) t</span><br><span class="line">  <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">1</span></span><br><span class="line">) e</span><br><span class="line"><span class="hljs-keyword">on</span> e.deptno = d.deptno</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 分部门得到平均工资等级为 2 级（等级表）的部门编号</span></span><br><span class="line"><span class="hljs-comment">-- 1.算出各部门的平均工资  t</span></span><br><span class="line"><span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">avg</span>(sal) avgsal</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line"><span class="hljs-comment">-- 2.使用t去关联salgrade</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.deptno,t.avgsal,s.grade</span><br><span class="line"><span class="hljs-keyword">from</span> (</span><br><span class="line">  <span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">avg</span>(sal) avgsal</span><br><span class="line">  <span class="hljs-keyword">from</span> emp</span><br><span class="line">  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line">) t,salgrade s</span><br><span class="line"><span class="hljs-keyword">where</span> t.avgsal <span class="hljs-keyword">between</span> s.losal <span class="hljs-keyword">and</span> s.hisal</span><br><span class="line"><span class="hljs-keyword">and</span> s.grade = <span class="hljs-number">3</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查找出部门 10 和部门 20 中，工资最高第 3 名到工资第 5 名的员工的员工名字，部门名字，部门位置</span></span><br><span class="line"><span class="hljs-comment">--方式1：</span></span><br><span class="line"><span class="hljs-comment">-- 1.过滤出deptno为10和20的员工，且按照工资排序</span></span><br><span class="line"><span class="hljs-keyword">select</span> emp.*,row_number() <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>) <span class="hljs-keyword">rank</span></span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">where</span> deptno <span class="hljs-keyword">in</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--2.在1的基础之上，关联了dept这个表</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*,d.dname,d.loc</span><br><span class="line"><span class="hljs-keyword">from</span> (</span><br><span class="line">  <span class="hljs-keyword">select</span> emp.*,row_number() <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span>) <span class="hljs-keyword">rank</span></span><br><span class="line">  <span class="hljs-keyword">from</span> emp</span><br><span class="line">  <span class="hljs-keyword">where</span> deptno <span class="hljs-keyword">in</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)</span><br><span class="line">) t,dept d</span><br><span class="line"><span class="hljs-keyword">where</span> t.rank &gt;=<span class="hljs-number">3</span> <span class="hljs-keyword">and</span> t.rank &lt;=<span class="hljs-number">5</span></span><br><span class="line"><span class="hljs-keyword">and</span> t.deptno=d.deptno</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--方式2：</span></span><br><span class="line"><span class="hljs-comment">-- 1.过滤出deptno为10和20的员工，且按照工资排序</span></span><br><span class="line"><span class="hljs-keyword">select</span> emp.*</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">where</span> deptno <span class="hljs-keyword">in</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--2.在1的基础之上,使用rownum取前5条</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span> rn</span><br><span class="line"><span class="hljs-keyword">from</span> (</span><br><span class="line">  <span class="hljs-keyword">select</span> emp.*</span><br><span class="line">  <span class="hljs-keyword">from</span> emp</span><br><span class="line">  <span class="hljs-keyword">where</span> deptno <span class="hljs-keyword">in</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)</span><br><span class="line">  <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span></span><br><span class="line">) t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">5</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--3.在2的基础上，取出3-5条，同时关联dept表</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.*,d.dname,d.loc</span><br><span class="line"><span class="hljs-keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span> rn</span><br><span class="line">  <span class="hljs-keyword">from</span> (</span><br><span class="line">    <span class="hljs-keyword">select</span> emp.*</span><br><span class="line">    <span class="hljs-keyword">from</span> emp</span><br><span class="line">    <span class="hljs-keyword">where</span> deptno <span class="hljs-keyword">in</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)</span><br><span class="line">    <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal <span class="hljs-keyword">desc</span></span><br><span class="line">  ) t</span><br><span class="line">  <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">5</span></span><br><span class="line">) e,dept d</span><br><span class="line"><span class="hljs-keyword">where</span> e.rn &gt;<span class="hljs-number">2</span> <span class="hljs-keyword">and</span> e.deptno=d.deptno</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查找出收入（工资加上奖金），下级比自己上级还高的员工编号，员工名字，员工收入</span></span><br><span class="line"><span class="hljs-comment">-- 思路：员工emp，上级emp --考虑，没有上级的员工是否参与比较</span></span><br><span class="line"><span class="hljs-keyword">select</span> e1.empno,e1.ename,e1.sal+nvl(e1.comm,<span class="hljs-number">0</span>),e2.empno,e2.ename,e2.sal+nvl(e2.comm,<span class="hljs-number">0</span>)</span><br><span class="line"><span class="hljs-keyword">from</span> emp e1,emp e2</span><br><span class="line"><span class="hljs-keyword">where</span> e1.mgr = e2.empno</span><br><span class="line"><span class="hljs-keyword">and</span> e1.sal+nvl(e1.comm,<span class="hljs-number">0</span>) &gt; e2.sal+nvl(e2.comm,<span class="hljs-number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查找出工资等级不为 4 级的员工的员工名字，部门名字，部门位置</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.*,d.dname,d.loc,s.grade</span><br><span class="line"><span class="hljs-keyword">from</span> emp e,dept d,salgrade s</span><br><span class="line"><span class="hljs-keyword">where</span> e.deptno=d.deptno</span><br><span class="line"><span class="hljs-keyword">and</span> e.sal <span class="hljs-keyword">between</span> s.losal <span class="hljs-keyword">and</span> s.hisal</span><br><span class="line"><span class="hljs-keyword">and</span> s.grade &lt;&gt; <span class="hljs-number">4</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查找出职位和'MARTIN' 或者'SMITH'一样的员工的平均工资</span></span><br><span class="line"><span class="hljs-comment">-- 1.找出'MARTIN' 或者'SMITH'的职位</span></span><br><span class="line"><span class="hljs-keyword">select</span> job <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> ename <span class="hljs-keyword">in</span>(<span class="hljs-string">'MARTIN'</span> ,<span class="hljs-string">'SMITH'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 2.计算CLERK和SALESMAN的平均工资</span></span><br><span class="line"><span class="hljs-keyword">select</span> job,<span class="hljs-keyword">avg</span>(sal)</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">where</span> job <span class="hljs-keyword">in</span> (<span class="hljs-keyword">select</span> job <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> ename <span class="hljs-keyword">in</span>(<span class="hljs-string">'MARTIN'</span> ,<span class="hljs-string">'SMITH'</span>))</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> job</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查找出不属于任何部门的员工</span></span><br><span class="line"><span class="hljs-comment">-- 按部门统计员工数，并按照部门员工数多到少取人数的第二名到第五名（列出部门名字，部门位置）</span></span><br><span class="line"><span class="hljs-keyword">select</span> e.*</span><br><span class="line"><span class="hljs-keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span> rn</span><br><span class="line">  <span class="hljs-keyword">from</span> (</span><br><span class="line">  <span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">count</span>(empno)</span><br><span class="line">  <span class="hljs-keyword">from</span> emp</span><br><span class="line">  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line">  <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">2</span> <span class="hljs-keyword">desc</span>) t</span><br><span class="line">  <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">5</span></span><br><span class="line"> ) e</span><br><span class="line"> <span class="hljs-keyword">where</span> e.rn &gt; <span class="hljs-number">1</span></span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">-- 查询出 king 所在部门的部门号\部门名称\部门人数</span></span><br><span class="line"><span class="hljs-keyword">select</span> d.deptno,d.dname,t.deptncount</span><br><span class="line"><span class="hljs-keyword">from</span> dept d <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> </span><br><span class="line">(</span><br><span class="line"><span class="hljs-comment">--统计king所在部门的人数</span></span><br><span class="line"><span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">count</span>(deptno) deptncount</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">where</span> deptno = (<span class="hljs-keyword">select</span> deptno <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> ename=<span class="hljs-string">'KING'</span>) <span class="hljs-comment">--找出king所在的部门</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno) t</span><br><span class="line"><span class="hljs-keyword">on</span> d.deptno = t.deptno</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查询出 king 所在部门的工作年限最大的员工名字</span></span><br><span class="line"><span class="hljs-keyword">select</span> t.*,<span class="hljs-keyword">rownum</span></span><br><span class="line"><span class="hljs-keyword">from</span>(</span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">where</span> deptno = (<span class="hljs-keyword">select</span> deptno <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> ename=<span class="hljs-string">'KING'</span>)</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> hiredate <span class="hljs-keyword">asc</span>) t</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查询出工资成本最高的部门的部门号和部门名称</span></span><br><span class="line"><span class="hljs-keyword">select</span> d.deptno,d.dname,t.deptsum</span><br><span class="line"><span class="hljs-keyword">from</span> dept d <span class="hljs-keyword">join</span> (</span><br><span class="line"><span class="hljs-keyword">select</span> deptno,<span class="hljs-keyword">sum</span>(sal) deptsum</span><br><span class="line"><span class="hljs-keyword">from</span> emp</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> deptsum <span class="hljs-keyword">desc</span>) t</span><br><span class="line"><span class="hljs-keyword">on</span> t.deptno = d.deptno</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;=<span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="6-高级查询-了解"><a href="#6-高级查询-了解" class="headerlink" title="6. 高级查询[了解]"></a>6. 高级查询[了解]</h1><h2 id="6-1-随机返回-5-条记录-dbms-random-value"><a href="#6-1-随机返回-5-条记录-dbms-random-value" class="headerlink" title="6.1 随机返回 5 条记录 :dbms_random.value()"></a>6.1 随机返回 5 条记录 :dbms_random.value()</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">--生成一个0~1间的随机小数（包括0，不包括1）</span></span><br><span class="line"><span class="hljs-comment">--生成一个1~10间的随机小数（包括1和不包括10）</span></span><br><span class="line"><span class="hljs-keyword">select</span> dbms_random.value(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>) <span class="hljs-keyword">from</span> dual;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--需求：从emp表中随机抽取5个员工信息：名字和工作</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line">  <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> ename, job <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> dbms_random.value())</span><br><span class="line"> <span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;= <span class="hljs-number">5</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-2-处理空值排序-nulls-last-first"><a href="#6-2-处理空值排序-nulls-last-first" class="headerlink" title="6.2 处理空值排序 :nulls last(first)"></a>6.2 处理空值排序 :nulls last(first)</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 如果Order by 中指定了表达式Nulls first则表示null值的记录将排在最前(不管是asc 还是 desc)</span></span><br><span class="line"><span class="hljs-comment">-- 如果Order by 中指定了表达式Nulls last则表示null值的记录将排在最后 (不管是asc 还是 desc)</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> comm <span class="hljs-keyword">nulls</span> <span class="hljs-keyword">last</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-3-查询跳过表中的偶数行-row-number-over"><a href="#6-3-查询跳过表中的偶数行-row-number-over" class="headerlink" title="6.3 查询跳过表中的偶数行 :row_number() over ()"></a>6.3 查询跳过表中的偶数行 :row_number() over ()</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> row_number() <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> e.ename) rn ,e.* <span class="hljs-keyword">from</span> emp e) x <span class="hljs-keyword">where</span> <span class="hljs-keyword">mod</span>(x.rn,<span class="hljs-number">2</span>)=<span class="hljs-number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-4-查询员工信息与其中工资最高最低员工"><a href="#6-4-查询员工信息与其中工资最高最低员工" class="headerlink" title="6.4 查询员工信息与其中工资最高最低员工"></a>6.4 查询员工信息与其中工资最高最低员工</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- over()窗口函数，之前没有加over，我们的聚合函数必须跟分组在一起使用，over()将每条记录看成一个窗口</span></span><br><span class="line"><span class="hljs-keyword">select</span> ename,sal,<span class="hljs-keyword">max</span>(sal) <span class="hljs-keyword">over</span>(), <span class="hljs-keyword">min</span>(sal) <span class="hljs-keyword">over</span>() <span class="hljs-keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-5-连续求和"><a href="#6-5-连续求和" class="headerlink" title="6.5 连续求和"></a>6.5 连续求和</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> ename,sal,<span class="hljs-keyword">sum</span>(sal) <span class="hljs-keyword">over</span>(), <span class="hljs-keyword">sum</span>(sal) <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> ename) <span class="hljs-keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-6-分部门连续求和"><a href="#6-6-分部门连续求和" class="headerlink" title="6.6 分部门连续求和"></a>6.6 分部门连续求和</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> ename,sal,<span class="hljs-keyword">sum</span>(sal) <span class="hljs-keyword">over</span>(), <span class="hljs-keyword">sum</span>(sal) <span class="hljs-keyword">over</span>(<span class="hljs-keyword">partition</span> <span class="hljs-keyword">by</span> deptno <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> ename) <span class="hljs-keyword">as</span> <span class="hljs-keyword">sum</span>,deptno <span class="hljs-keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-7-得到当前行上一行或者下一行的数据"><a href="#6-7-得到当前行上一行或者下一行的数据" class="headerlink" title="6.7 得到当前行上一行或者下一行的数据"></a>6.7 得到当前行上一行或者下一行的数据</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> ename,sal,<span class="hljs-keyword">lead</span>(sal) <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal) <span class="hljs-keyword">as</span> <span class="hljs-keyword">lead</span> ,lag(sal) <span class="hljs-keyword">over</span>(<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sal) <span class="hljs-keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-8-根据子串分组"><a href="#6-8-根据子串分组" class="headerlink" title="6.8 根据子串分组"></a>6.8 根据子串分组</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> to_char(hiredate,<span class="hljs-string">'yyyy'</span>),<span class="hljs-keyword">avg</span>(sal) <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> to_char(hiredate,<span class="hljs-string">'yyyy'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-9-确定一年内的天数"><a href="#6-9-确定一年内的天数" class="headerlink" title="6.9 确定一年内的天数"></a>6.9 确定一年内的天数</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> add_months(trunc(<span class="hljs-keyword">sysdate</span>,<span class="hljs-string">'y'</span>),<span class="hljs-number">12</span>)-trunc(<span class="hljs-keyword">sysdate</span>,<span class="hljs-string">'y'</span>) <span class="hljs-keyword">from</span>  dual;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-10-查询-EMP-员工表下每个部门工资前二名的员工信息"><a href="#6-10-查询-EMP-员工表下每个部门工资前二名的员工信息" class="headerlink" title="6.10 查询 EMP 员工表下每个部门工资前二名的员工信息"></a>6.10 查询 EMP 员工表下每个部门工资前二名的员工信息</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span>* <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> e.*,row_number() <span class="hljs-keyword">over</span>(<span class="hljs-keyword">partition</span> <span class="hljs-keyword">by</span> deptno <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> empno) rn <span class="hljs-keyword">from</span> emp e) a <span class="hljs-keyword">where</span> a.rn &lt;=<span class="hljs-number">2</span>;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/10/11/4-Oralce/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">4-Oracle</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/10/Socket/">
+                <span class="level-item">Socket</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/brown.jpg" alt="BrownQi">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        BrownQi
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>江苏  南京</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        1
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        3
+                    </p>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/BrownQi" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/BrownQi">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.brownqi.cn" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">BrownQi&#39;s Blog</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.brownqi.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/oracle/">
+            <span class="level-start">
+                <span class="level-item">oracle</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/oracle练习/" style="font-size: 10px;">oracle练习</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/4-Oralce/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="4-Oracle">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T20:22:46.000Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/4-Oralce/" class="title has-link-black-ter is-size-6 has-text-weight-normal">4-Oracle</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/3-Oralce/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="3-Oracle">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T20:22:20.000Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/3-Oralce/" class="title has-link-black-ter is-size-6 has-text-weight-normal">3-Oracle</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/10/Socket/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Socket">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T09:52:48.000Z">2019-10-10</time></div>
+                    <a href="/2019/10/10/Socket/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Socket</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/09/Downloads/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Downloads">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-09T07:02:46.000Z">2019-10-09</time></div>
+                    <a href="/2019/10/09/Downloads/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Downloads</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/08/hexo-blog/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="使用hexo搭建个人博客">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T07:41:43.000Z">2019-10-08</time></div>
+                    <a href="/2019/10/08/hexo-blog/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用hexo搭建个人博客</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo/">
+                        <span class="tag">hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/network/">
+                        <span class="tag">network</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/oracle练习/">
+                        <span class="tag">oracle练习</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/4-Oralce/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="4-Oracle">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T20:22:46.000Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/4-Oralce/" class="title has-link-black-ter is-size-6 has-text-weight-normal">4-Oracle</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/3-Oralce/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="3-Oracle">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T20:22:20.000Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/3-Oralce/" class="title has-link-black-ter is-size-6 has-text-weight-normal">3-Oracle</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/10/Socket/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Socket">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T09:52:48.000Z">2019-10-10</time></div>
+                    <a href="/2019/10/10/Socket/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Socket</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/09/Downloads/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Downloads">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-09T07:02:46.000Z">2019-10-09</time></div>
+                    <a href="/2019/10/09/Downloads/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Downloads</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/08/hexo-blog/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="使用hexo搭建个人博客">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T07:41:43.000Z">2019-10-08</time></div>
+                    <a href="/2019/10/08/hexo-blog/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用hexo搭建个人博客</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo/">
+                        <span class="tag">hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/network/">
+                        <span class="tag">network</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/oracle练习/">
+                        <span class="tag">oracle练习</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/title.png" alt="3-Oracle" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 BrownQi&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
