@@ -141,7 +141,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 688 个字)
+                    5 分钟 读完 (大约 689 个字)
                 </span>
                 
                 
@@ -156,93 +156,16 @@
         <div class="content">
             <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="应用编程接口API"><a href="#应用编程接口API" class="headerlink" title="应用编程接口API"></a>应用编程接口API</h2><p>Application Programming Interface</p>
 <p>定义：API就是应用进程的控制权和操作系统的控制权进行转换的一个系统调用接口。</p>
-<h2 id="几种典型的应用编程接口"><a href="#几种典型的应用编程接口" class="headerlink" title="几种典型的应用编程接口"></a>几种典型的应用编程接口</h2><ol>
-<li>Berkeley UNIX 操作系统定义了一种AOI，称为套接字接口（socket interface），<strong>简称套接字（socket）</strong>。</li>
-<li>微软公司在其操作系统中采用了套接字接口API，形成了一个稍有不同的API，并称之为Windows Socket Interface，简称<strong>WINSOCK</strong>。</li>
-<li>AT&amp;T为其UNIX系统V定义了一种API，简写为<strong>TLI</strong>（Transport Layer Interface）。</li>
-</ol>
-<h2 id="Socket-API"><a href="#Socket-API" class="headerlink" title="Socket API"></a>Socket API</h2><ol>
-<li>最初设计<ul>
-<li>面向BSD UNIX-Berkley</li>
-<li>面向TCP/IP协议栈接口</li>
-</ul>
-</li>
-<li>目前<ul>
-<li>事实上的工业标准</li>
-<li>绝大多数操作系统都支持</li>
-</ul>
-</li>
-<li>Internet网络应用最典型的API接口</li>
-<li>通信模型<ul>
-<li>客服/服务器（C/S）</li>
-</ul>
-</li>
-<li>应用进程间通信的抽象机制</li>
-<li>表示通信端点（对外）：<ul>
-<li><strong>IP地址 + 端口号</strong></li>
-</ul>
-</li>
-<li>操作系统/进程如何管理套接字（对内）：<ul>
-<li>套接字描述符 （<strong>socket</strong>）<ul>
-<li>小整数</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="Socket抽象"><a href="#Socket抽象" class="headerlink" title="Socket抽象"></a>Socket抽象</h2><ol>
-<li>类似于文件的抽象</li>
-<li>当应用进程创建套接字时，操作系统分配一个数据结构存储该套接字相关信息</li>
-<li>返回套接字描述符</li>
-</ol>
-<h2 id="地址结构"><a href="#地址结构" class="headerlink" title="地址结构"></a>地址结构</h2><ol>
-<li><p>已定义结构<strong><em>sockaddr_in</em></strong>:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sturct sockaddr_in</span><br><span class="line">&#123;</span><br><span class="line">	u_char sin_len;						/*地址长度*/</span><br><span class="line">	u_char sin_family;					/*地址组（TCP/IP:AF_INET）*/</span><br><span class="line">	u_short sin_port;					/*端口号*/</span><br><span class="line">	struct in_addr sin_addr;			/*IP地址*/</span><br><span class="line">	char sin_zero[8];					/*未用（置0）*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用TCP/IP协议簇的网络应用程序声明端点地址变量时，使用结构<strong><em>sockaddr_in</em></strong></p>
-</li>
-</ol>
-<h2 id="Socket-API函数（WinSock）"><a href="#Socket-API函数（WinSock）" class="headerlink" title="Socket API函数（WinSock）"></a>Socket API函数（WinSock）</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">	A[WSAStartup&lt;br&gt;初始化Windows Sockets AP] --&gt; B[应用程序]</span><br><span class="line">	B --&gt; C[WSACleanup&lt;BR&gt;释放所使用的Windows Sockets DLL]</span><br></pre></td></tr></table></figure>
-
-<h3 id="WSAStartup"><a href="#WSAStartup" class="headerlink" title="WSAStartup"></a>WSAStartup</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int WSAStartup(WORD wVersionRequested,LPWSADATA IpWSAData);</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>使用Socket的应用程序在使用Socket之前必须<strong>首先</strong> 调用<strong>WSAStartup</strong>函数</p>
-</li>
-<li><p>两个参数：</p>
-<ul>
-<li>第一个参数指明程序请求使用的WinSock版本，其中高位字节指明副版本，低位字节指明主版本。<ul>
-<li>十六进制整数，例如0x102表示2.1版</li>
-</ul>
-</li>
-<li>第二个参数返回实际的WinSock的版本信息<ul>
-<li>指向WSADATA结构的指针</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>例：使用2.1版本的WinSock的程序代码段</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wVersionRequested = MAKEWORD(2,1);</span><br><span class="line">err = WSAStartup( wVersionRequested, &amp;wsaData );</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="WSACleanup"><a href="#WSACleanup" class="headerlink" title="WSACleanup"></a>WSACleanup</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int WSACleanup (void);</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>应用程序在完成对请求的Socket库的使用，<strong>最后</strong>要调用<strong>WSACleanup</strong>函数</li>
-<li>解除与Socket库的绑定</li>
-<li>释放Socket库所占用的系统资源</li>
-</ol>
-<h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sd = socket(protofamily,type,proto);</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>创建套接字</li>
-<li>操作系统返回套接字描述符（<em>sd</em>）</li>
-<li>第一个参数（协议族）：protofamily = <strong>PF_INET</strong> (TCP/TP)</li>
-</ol>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/10/10/Socket/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
