@@ -7,17 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>BrownQi&#39;s Notes</title>
+<title>Socket - BrownQi&#39;s Notes</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="BrownQi&#39;s Notes">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="概述应用编程接口APIApplication Programming Interface 定义：API就是应用进程的控制权和操作系统的控制权进行转换的一个系统调用接口。 几种典型的应用编程接口 Berkeley UNIX 操作系统定义了一种AOI，称为套接字接口（socket interface），简称套接字（socket）。 微软公司在其操作系统中采用了套接字接口API，形成了一个稍有不同的AP">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Socket">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/Socket/index.html">
 <meta property="og:site_name" content="BrownQi&#39;s Notes">
+<meta property="og:description" content="概述应用编程接口APIApplication Programming Interface 定义：API就是应用进程的控制权和操作系统的控制权进行转换的一个系统调用接口。 几种典型的应用编程接口 Berkeley UNIX 操作系统定义了一种AOI，称为套接字接口（socket interface），简称套接字（socket）。 微软公司在其操作系统中采用了套接字接口API，形成了一个稍有不同的AP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-10-10T09:55:14.045Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BrownQi&#39;s Notes">
+<meta name="twitter:title" content="Socket">
+<meta name="twitter:description" content="概述应用编程接口APIApplication Programming Interface 定义：API就是应用进程的控制权和操作系统的控制权进行转换的一个系统调用接口。 几种典型的应用编程接口 Berkeley UNIX 操作系统定义了一种AOI，称为套接字接口（socket interface），简称套接字（socket）。 微软公司在其操作系统中采用了套接字接口API，形成了一个稍有不同的AP">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -76,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/title.png" alt="BrownQi&#39;s Notes" height="28">
+                <img src="/images/title.png" alt="Socket" height="28">
             
             </a>
         </div>
@@ -84,7 +89,7 @@
             
             <div class="navbar-start">
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/">Home</a>
                 
                 <a class="navbar-item"
@@ -118,7 +123,6 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    
 <div class="card">
     
     <div class="card-content article ">
@@ -135,12 +139,17 @@
                 </span>
                 
                 
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/10/10/Socket/">Socket</a>
+                Socket
             
         </h1>
         <div class="content">
@@ -233,55 +242,15 @@
 
         </div>
         
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-09T07:02:46.000Z">2019-10-09</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    几秒 读完 (大约 55 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/10/09/Downloads/">Downloads</a>
-            
-        </h1>
-        <div class="content">
-            <p>相关内容下载链接</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/09/Downloads/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/network/">network</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -291,109 +260,19 @@
 
 
 
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-08T07:41:43.000Z">2019-10-08</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 277 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/09/Downloads/">
+                <span class="level-item">Downloads</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/10/08/hexo-blog/">使用hexo搭建个人博客</a>
-            
-        </h1>
-        <div class="content">
-            <p>使用hexo框架搭在windows平台建个人博客，并部署到github。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/08/hexo-blog/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-01T07:52:11.000Z">2019-10-01</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/oracle/">oracle</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    18 分钟 读完 (大约 2632 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/10/01/oracle-practice-10-1/">oracle练习_1</a>
-            
-        </h1>
-        <div class="content">
-            <p>oracle课后练习。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/01/oracle-practice-10-1/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
 
 
 </div>
@@ -853,7 +732,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/title.png" alt="BrownQi&#39;s Notes" height="28">
+                    <img src="/images/title.png" alt="Socket" height="28">
                 
                 </a>
                 <p class="is-size-7">
