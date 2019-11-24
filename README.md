@@ -1,3 +1,3 @@
 # BrownQi.github.io
 
-[www.brownqi.cn](www.brownqi.cn)
+[www.brownqi.cn](https://www.brownqi.cn)
